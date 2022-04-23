@@ -13,14 +13,19 @@ namespace assignment {
 
   std::optional<int> BinarySearchRecursive::search(const std::vector<int>& arr, int search_elem, int start, int stop) const {
 
-    // Tips:
-    // 1. Рассмотрите базовые случаи выхода и рекурсии:
-    //    1) индекс левого элемента стал больше индекса правого элемента
-    //    2) целевой элемент найден
-    // 2. Вызовите рекурсивный метод, изменив границы поиска
-    //    в зависимости от неравенства между элементом посередине и целевого элемента
-
-    return std::nullopt;
+    if (start > stop) {
+      return std::nullopt;
+    }
+    int m = (start + stop) / 2;
+    if (search_elem == arr[m]) {
+      return m;
+    }
+    if (search_elem < arr[m]) {
+      return search(arr, search_elem, start, m - 1);
+    }
+    if (search_elem > arr[m]) {
+      return search(arr, search_elem, m + 1, stop);
+    }
   }
 
 }  // namespace assignment
